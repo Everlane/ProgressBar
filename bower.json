@@ -5,7 +5,7 @@
   "authors": [
     "Jeff Micklos <jeffmicklos@gmail.com>"
   ],
-  "description": "rad rock n roll progress bar sick",
+  "description": "a flexible progress indicator in javascript",
   "license": "MIT",
   "ignore": [
     "**/.*",
@@ -13,5 +13,8 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4"
+  }
 }
