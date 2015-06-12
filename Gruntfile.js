@@ -23,12 +23,12 @@ module.exports = function(grunt) {
       },
       dist: {
         files: {
-          'dist/progress-bar.js': 'src/progress-bar.js'
+          'dist/<%= pkg.name %>.js': 'build/<%= pkg.name %>.js'
         }
       }
     },
     watch: {
-      files: ['src/progress-bar.js'],
+      files: ['src/<%= pkg.name %>.coffee'],
       tasks: ['default']
     },
     coffee: {
@@ -37,12 +37,12 @@ module.exports = function(grunt) {
           bare: true
         },
         files: {
-          'src/progress-bar.js': 'src/progress-bar.coffee'
+          'build/<%= pkg.name %>.js': 'src/<%= pkg.name %>.coffee'
         }
       }
     }
   });
 
-  grunt.registerTask('default', ['babel', 'uglify']);
+  grunt.registerTask('default', ['coffee', 'babel', 'uglify']);
 
 };

@@ -29,7 +29,7 @@
   var ProgressBar;
 
   ProgressBar = (function () {
-    ProgressBar.prototype.delay_start_timeout = null;
+    ProgressBar.prototype.delayStartTimeout = null;
 
     ProgressBar.prototype.timeout = null;
 
@@ -39,9 +39,9 @@
       defaults = {
         baseIncrementAmount: 25,
         stopPoint: 98,
-        selector: '#loading-indicator'
+        selector: '.progress-bar'
       };
-      this.options = _.extend({}, defaults, options);
+      this.options = _$['default'].extend({}, defaults, options);
       this.element = (0, _$['default'])(this.options.selector);
       return this;
     }
@@ -51,7 +51,7 @@
         delay = 0;
       }
       this.stop();
-      this.delay_start_timeout = setTimeout((function (_this) {
+      this.delayStartTimeout = setTimeout((function (_this) {
         return function () {
           _this.reset();
           return _this.trickle();
@@ -61,7 +61,7 @@
     };
 
     ProgressBar.prototype.stop = function () {
-      clearTimeout(this.delay_start_timeout);
+      clearTimeout(this.delayStartTimeout);
       clearTimeout(this.timeout);
       if (this.progress) {
         return this.element.velocity({
@@ -90,6 +90,12 @@
 
     ProgressBar.prototype.trickle = function (delta) {
       if (this.progress <= this.options.stopPoint) {
+
+        /*
+        We are using a dynamic multipler to generate the progress
+        delta so as the loading bar approaches 100%, we can
+        increment it in increasingly smaller amounts.
+         */
         this.progress += this.options.baseIncrementAmount * this.multiplier() * Math.random();
         return this.timeout = setTimeout((function (_this) {
           return function () {

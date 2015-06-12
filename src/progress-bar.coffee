@@ -9,7 +9,7 @@ sit patiently until you call `.end()` on it.
 ###
 class ProgressBar
 
-  delay_start_timeout: null
+  delayStartTimeout: null
   timeout: null
 
   constructor: (options) ->
@@ -23,9 +23,9 @@ class ProgressBar
       # The percentage which the loader should stop
       stopPoint: 98
       # Selector of said bar
-      selector: '#loading-indicator'
+      selector: '.progress-bar'
 
-    @options = _.extend {}, defaults, options
+    @options = $.extend {}, defaults, options
 
     @element = $(@options.selector)
 
@@ -33,7 +33,7 @@ class ProgressBar
 
   start: (delay=0) ->
     @stop()
-    @delay_start_timeout = setTimeout =>
+    @delayStartTimeout = setTimeout =>
       @reset()
       @trickle()
     , delay
@@ -41,7 +41,7 @@ class ProgressBar
     return this
 
   stop: ->
-    clearTimeout @delay_start_timeout
+    clearTimeout @delayStartTimeout
     clearTimeout @timeout
 
     if @progress
@@ -65,9 +65,11 @@ class ProgressBar
   trickle: (delta) ->
     if @progress <= @options.stopPoint
 
-      # We are using a dynamic multipler to generate the progress
-      # delta so as the loading bar approaches 100%, we can
-      # increment it in increasingly smaller amounts.
+      ###
+      We are using a dynamic multipler to generate the progress
+      delta so as the loading bar approaches 100%, we can
+      increment it in increasingly smaller amounts.
+      ###
       @progress += @options.baseIncrementAmount * @multiplier() * Math.random()
 
       # Animate loading bar after a timeout, which should
