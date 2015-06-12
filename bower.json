@@ -1,0 +1,17 @@
+{
+  "name": "ProgressBar",
+  "version": "0.0.0",
+  "homepage": "https://github.com/jeffmicklos/ProgressBar",
+  "authors": [
+    "Jeff Micklos <jeffmicklos@gmail.com>"
+  ],
+  "description": "rad rock n roll progress bar sick",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
